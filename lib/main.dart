@@ -1,103 +1,94 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    Widget titleSection = Container(
-        padding: EdgeInsets.only(left: 32, right: 32, top: 32, bottom: 3.0),
-        child: Row(
-          children: [
-            Container(
-              child: Icon(
-                Icons.account_circle_sharp,
-                size: 100.0,
+    return MaterialApp(
+      home: LoginScreen(),
+      routes: {
+        '/youdidit': (context) => YouDidItScreen(),
+      },
+    );
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Login"),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.diamond,
+                size: 50.0,
               ),
-            ),
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Raihan Muhaimin",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+              Text("Shrine"),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  filled: true,
+                  labelText: "Username",
+                ),
+              ),
+              TextField(
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  filled: true,
+                  labelText: "Password",
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      // Clear username field
+                    },
+                    child: Text("Text"),
                   ),
-                  Text("Mobile App Developer"),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/youdidit');
+                    },
+                    child: Text("Next"),
+                  )
                 ],
               ),
-            ),
-          ],
-        ));
-
-    Widget alamat = Container(
-      padding: EdgeInsets.only(left: 60.0, right: 60.0, top: 3.0, bottom: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            child: Text("permindo asri"),
+            ],
           ),
-          Container(
-            child: Text("082284269694"),
-          ),
-        ],
-      ),
-    );
-
-    Color color = Theme.of(context).primaryColor;
-
-    Widget button = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildButtonColumn(color, Icons.accessibility_outlined, 'CALL'),
-        _buildButtonColumn(color, Icons.timer_outlined, 'ROUTE'),
-        _buildButtonColumn(color, Icons.phone_android_sharp, 'SHARE'),
-        _buildButtonColumn(color, Icons.phone_iphone_sharp, 'SHARE'),
-      ],
-    );
-
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Kartu Nama Saya'),
-        ),
-        body: ListView(
-          children: [
-            titleSection,
-            alamat,
-            button,
-          ],
         ),
       ),
     );
   }
+}
 
-  Column _buildButtonColumn(Color color, IconData icon, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: color),
-        Container(
-          margin: const EdgeInsets.only(top: 8),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: color,
-            ),
-          ),
-        ),
-      ],
+class YouDidItScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("You did it!"),
+      ),
+      body: Center(
+        child: Text("You did it!"),
+      ),
     );
   }
 }
